@@ -11,14 +11,19 @@ body {
     overflow: hidden;
 }
 
+/* sidebar */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
-    width: 240px;
+    width: 78px;
     background-color: #11101d;
     padding: 5px 15px;
+    transition: all 0.5s ease;
+}
+.sidebar.active {
+    width: 240px;
 }
 
 /* logo */
@@ -28,6 +33,13 @@ body {
     height: 50px;
     width: 100%;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.sidebar.active .logo_container .logo {
+    opacity: 1;
+    pointer-events: none;
 }
 .logo_container i {
     font-size: 25px;
@@ -42,7 +54,7 @@ body {
 .sidebar #btn {
     position: absolute;
     color: #fff;
-    left: 90%;
+    left: 50%;
     top: 5px;
     height: 50px;
     width: 50px;
@@ -50,6 +62,9 @@ body {
     text-align: center;
     line-height: 50px;
     transform: translateX(-50%);
+}
+.sidebar.active #btn {
+    left: 90%;
 }
 
 /* nav list */
@@ -72,6 +87,7 @@ body {
     display: flex;
     align-items: center;
     border-radius: 10px;
+    white-space: nowrap;
     transition: all 0.5s ease;
 }
 .sidebar ul li a:hover {
@@ -84,6 +100,15 @@ body {
     min-width: 50px;
     text-align: center;
     border-radius: 10px;
+}
+.sidebar .links_text {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.sidebar.active .links_text {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* user info */
@@ -98,11 +123,22 @@ body {
     position: relative;
     padding: 10px 5px;
     height: 60px;
+    background: none;
+    transition: all 0.5s ease;
+}
+.sidebar.active .user_container .user_profile {
     background-color: #1d1b31;
 }
-.user_profile .user_details {
+.user_container .user_profile .user_details {
     display: flex;
-    align-items: center;    
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.sidebar.active .user_profile .user_details {
+    opacity: 1;
+    pointer-events: auto;
 }
 .user_profile .user_details img {
     height: 45px;
@@ -120,27 +156,41 @@ body {
 .user_profile .user_details .user_role {
     font-size: 12px;
 }
+
+/* logout */
 .user_profile #logout {
     position: absolute;
-    left: 88%;
+    left: 50%;
     bottom: 5px;
     transform: translateX(-50%);
     min-width: 50px;
     line-height: 50px;
     font-size: 20px;
     border-radius: 10px;
+    text-align: center;
+    background-color: #1d1b31;
+    transition: all 0.5s ease;
+}
+.sidebar.active .user_profile #logout {
+    left: 88%;
+    background: none;
 }
 
 /* main container */
 .main_container {
     position: absolute;
     height: 100%;
-    width: calc(100% - 240px);
-    left: 240px;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.5s ease;
 }
 .main_container .main {
     font-size: 25px;
     font-weight: bold;
     margin: 10px;
     color: #1d1b31;
+}
+.sidebar.active ~ .main_container {
+    width: calc(100% - 24px);
+    left: 240px;
 }
